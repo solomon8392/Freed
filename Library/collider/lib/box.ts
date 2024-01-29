@@ -6,6 +6,8 @@ export interface ISquare extends IActor {
   type: "square";
   width: number;
   height: number;
+  text: string;
+  font: string;
 }
 
 export class Box implements ISquare {
@@ -18,6 +20,8 @@ export class Box implements ISquare {
   color: string;
   collisions: number[];
   fixed?: boolean;
+  text: string;
+  font: string;
 
   constructor({
     id = Math.floor(Math.random() * 1000000),
@@ -28,6 +32,8 @@ export class Box implements ISquare {
     color = "blue",
     collisions = [],
     fixed = false,
+    text = "Happy",
+    font = "30px Arial",
   }: Partial<ISquare> = {}) {
     this.id = id;
     this.type = "square";
@@ -38,6 +44,8 @@ export class Box implements ISquare {
     this.color = color;
     this.collisions = collisions;
     this.fixed = fixed;
+    this.text = text;
+    this.font = font;
   }
 
   update(state: State, time: number, updateId: number): Box {

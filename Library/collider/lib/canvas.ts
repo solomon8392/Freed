@@ -1,8 +1,7 @@
 import { RefObject } from "react";
-import { IActor } from "./helpers";
-import { State } from "./state";
-import { ISquare } from "./box";
 import { ICircle } from "./ball";
+import { ISquare } from "./box";
+import { State } from "./state";
 
 export interface ICanvasConfig {
   width?: number;
@@ -66,6 +65,15 @@ export class Canvas {
     this.ctx.fillStyle = actor.color;
     this.ctx.fill();
     this.ctx.translate(-0.5, -0.5);
+    if (actor.image) {
+      this.ctx.drawImage(
+        actor.image.src,
+        actor.position.x - actor.image.width / 2,
+        actor.position.y - actor.image.height / 2,
+        actor.image.width,
+        actor.image.height
+      );
+    }
   }
 
   drawSquare(actor: ISquare): void {
@@ -79,5 +87,16 @@ export class Canvas {
     this.ctx.closePath();
     this.ctx.fillStyle = actor.color;
     this.ctx.fill();
+    if (actor.text) {
+      this.ctx.font = actor.font;
+      this.ctx.textAlign = "center";
+      this.ctx.textBaseline = "middle";
+      this.ctx.fillStyle = "black"; // Set the text color
+      this.ctx.fillText(
+        actor.text,
+        actor.position.x + actor.width / 2,
+        actor.position.y + actor.height / 2
+      );
+    }
   }
 }

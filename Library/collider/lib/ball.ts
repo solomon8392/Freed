@@ -8,9 +8,16 @@ import {
 import { State } from "./state";
 import { Vector } from "./vector";
 
+export interface Image {
+  src: HTMLImageElement;
+  width: number;
+  height: number;
+}
+
 export interface ICircle extends IActor {
   type: "circle";
   radius: number;
+  image: Image;
 }
 
 export class Ball implements ICircle {
@@ -22,6 +29,7 @@ export class Ball implements ICircle {
   color: string;
   collisions: number[];
   fixed?: boolean | undefined;
+  image: Image;
 
   constructor({
     id = Math.floor(Math.random() * 1000000),
@@ -31,6 +39,7 @@ export class Ball implements ICircle {
     color = "blue",
     collisions = [],
     fixed = false,
+    image,
   }: Partial<ICircle> = {}) {
     this.id = id;
     this.type = "circle";
@@ -40,6 +49,7 @@ export class Ball implements ICircle {
     this.color = color;
     this.collisions = collisions;
     this.fixed = fixed;
+    this.image = image as Image;
   }
 
   update(state: State, time: number, updateId: number): Ball {

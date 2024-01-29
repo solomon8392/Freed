@@ -154,3 +154,32 @@ export const calculateCircleCollision = (
     );
   }
 };
+
+export const itemList = [
+  "apple.svg",
+  "bat-fly.svg",
+  "bolt.svg",
+  "book.svg",
+  "bulb.svg",
+  "cactus.svg",
+  "clock.svg",
+  "cloudy.svg",
+  "coins.svg",
+  "cone.svg",
+  "cup-with-saucer.svg",
+  "diamond.svg",
+  "donut.svg",
+  "eyes.svg",
+  "headphone.svg",
+  "leaf.svg",
+  "mug.svg",
+  "omg.svg",
+  "owl.svg",
+  "pizza.svg",
+  "potted-plant.svg",
+  "shuttle.svg",
+  "signal.svg",
+  "sneakers.svg",
+  "starry-eyed.svg",
+  "zap.svg",
+];

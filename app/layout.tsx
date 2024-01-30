@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import MainNav from "@/Library/components/organisms/MainNav";
 import "@/library/styles/globals.css";
+import type { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Bountypal",
@@ -16,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="relative flex w-full min-h-screen flex-col items-center gap-4 bg-[#ffffff] bg-[url(/grid--light.svg)]">
+        <MainNav />
+        {children}
+      </body>
     </html>
   );
 }

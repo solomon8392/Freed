@@ -15,7 +15,16 @@ export interface IActor {
   fixed?: boolean;
 }
 
-export const colors: string[] = ["red", "green", "blue", "purple", "orange"];
+// export const colors: string[] = ["red", "green", "blue", "purple", "orange"];
+export const colors: string[] = [
+  "#0CA5E9",
+  "#6466F1",
+  "#C125D3",
+  "#EC4899",
+  "#3C82F6",
+  "#C084FC",
+  "#8B5CF6",
+];
 
 export const collisionVector = (
   particle1: IActor,
@@ -171,6 +180,7 @@ export const itemList = [
   "donut.svg",
   "eyes.svg",
   "headphone.svg",
+  "hotdog.svg",
   "leaf.svg",
   "mug.svg",
   "omg.svg",

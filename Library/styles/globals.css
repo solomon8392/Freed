@@ -17,9 +17,7 @@
 }
 
 canvas {
-  /* all four are needed to support the most browsers */
-  /* image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges; */
-  /* image-rendering: pixelated; */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
   image-rendering: crisp-edges;
 }

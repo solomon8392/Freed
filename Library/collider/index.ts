@@ -23,7 +23,7 @@ const collider = ({
     position: new Vector(width * 2 - 2000 / 2, height * 2 - 600 / 2),
     velocity: new Vector(0, 0),
     fixed: true,
-    text: "Happy!!!!",
+    text: "All Bounties!!!",
     font: "200px Arial",
   });
 
@@ -54,12 +54,14 @@ const collider = ({
       const selectedItemIndex = (startIndex + createdCount) % itemList.length;
       const svgImage = images[selectedItemIndex];
 
+      const radius = Math.min(svgImage.width / 2.2, svgImage.height / 2.2)
+
       const newBall = new Ball({
-        radius: Math.min(svgImage.width / 2.2, svgImage.height / 2.2),
+        radius,
         color: colors[random(colors.length - 1)],
         position: new Vector(
-          random(width * 4 - 10, 10),
-          random(height * 4 - 10, 10)
+          random(width * 4 - (10 + radius), (10 + radius)),
+          random(height * 4 - (10 + radius), (10 + radius))
         ),
         velocity: new Vector(random(0.2, -0.2), random(0.2, -0.2)),
         image: {
@@ -85,9 +87,9 @@ const collider = ({
             otherFloater.type === "square" && otherFloater.fixed
               ? new Vector((width * 4) / 2, (height * 4) / 2) // simulate the square origin point being at the center of canvas
               : otherFloater.position.add(otherFloater.velocity)
-          ).magnitude <
+          ).magnitude <=
           newBall.radius +
-            Math.max(otherFloaterRadius + 150, otherFloaterDiagonal / 2)
+            Math.max(otherFloaterRadius, otherFloaterDiagonal / 2)
         ) {
           positionIsValid = false;
         }
@@ -104,8 +106,8 @@ const collider = ({
         radius: random(10, 15) + Math.random(),
         color: "black",
         position: new Vector(
-          random(width * 4 - 10, 5),
-          random(height * 4 - 10, 3)
+          random(width * 4 - 50, 50),
+          random(height * 4 - 50, 50)
         ),
         velocity: new Vector(random(1, -1), random(1, -1)),
       });

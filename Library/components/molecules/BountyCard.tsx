@@ -19,7 +19,7 @@ const BountyCard = (prop: IBountyCard) => {
     >
       <div className="flex gap-4">
         <Image
-          src={prop.avatarURL ? prop.avatarURL : "/pic.svg"}
+          src={prop.avatarURL ? prop.avatarURL : "/repo-default.svg"}
           alt={prop.title}
           width={64}
           height={64}

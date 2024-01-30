@@ -99,12 +99,18 @@ export class Ball implements ICircle {
     const lowerLimit = new Vector(this.radius, this.radius);
 
     // Check if hitting left or right of container.
-    if (this.position.x >= upperLimit.x || this.position.x <= lowerLimit.x) {
+    if (
+      this.position.x >= upperLimit.x - 10 ||
+      this.position.x <= lowerLimit.x + 10
+    ) {
       this.velocity = new Vector(-this.velocity.x, this.velocity.y);
     }
 
     // Check if hitting top or bottom of container.
-    if (this.position.y >= upperLimit.y || this.position.y <= lowerLimit.y) {
+    if (
+      this.position.y >= upperLimit.y - 10 ||
+      this.position.y <= lowerLimit.y + 10
+    ) {
       this.velocity = new Vector(this.velocity.x, -this.velocity.y);
     }
 

@@ -16,23 +16,8 @@
   }
 }
 
-.ce-toolbar__plus:hover,
-.ce-toolbar__settings-btn:hover,
-.cdx-loader,
-.cdx-button {
-  color: white;
-  background-color: #262626;
-}
-
-.cdx-button:hover {
-  background-color: #2f2f2f;
-}
-
-.ce-popover,
-.ce-popover-item,
-.ce-popover-item__icon,
-.ce-popover-items,
-.ce-popover-item:hover {
-  --color-background-item-hover: #fcecd6;
-  border: none;
+canvas {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: crisp-edges;
 }

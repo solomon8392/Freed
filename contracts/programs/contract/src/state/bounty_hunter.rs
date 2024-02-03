@@ -10,6 +10,9 @@ pub struct BountyHunter {
     /// Authority of user
     pub authority: Pubkey,
 
+    /// Bounty hunter Id on the platform
+    pub id: i64,
+
     /// Bio of user
     pub bio: String,
 
@@ -31,6 +34,7 @@ impl BountyHunter {
         + NAME_LENGTH                            // Name
         + PUBKEY_LENGTH                          // Authority
         + BIO_LENGTH                             // Bio of user
+        + DATA_LENGTH                            // id of bounty hunter on the platform
         + DATA_LENGTH                            // Reputation
         + DATA_LENGTH                            // Number of completed bounties
         + DATA_LENGTH                            // Number of active bounties

@@ -20,7 +20,10 @@ pub struct Bounty {
     pub amount: u64,
 
     /// Timestamp when bounty was posted
-    pub post_ts: i64,
+    pub bounty_start_time: i64,
+
+    ///Timestamp when bounty is supposed to end
+    pub bounty_end_time: i64,
 
     /// Number of active bounty applications
     pub applications: u64,
@@ -45,7 +48,8 @@ impl Bounty {
         + DATA_LENGTH                           // Bounty Id
         + PUBKEY_LENGTH                         // Vault Account for Bounty
         + DATA_LENGTH                           // Amount For Bounty
-        + DATA_LENGTH                           // Timestamp for Bounty post
+        + DATA_LENGTH                           // Timestamp for when Bounty started
+        + DATA_LENGTH                           // Timestamp for when Bounty ends
         + DATA_LENGTH                           // Number of applicants
         + DATA_LENGTH                           // Number of approved users
         + LINK_LENGTH                           // Description of Bounty

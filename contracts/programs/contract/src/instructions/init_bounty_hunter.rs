@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::{state::*, errors::ErrorCodes};
+use crate::{errors::ErrorCodes, state::*};
 
 #[derive(Accounts)]
 pub struct InitBountyHunter<'info> {
@@ -12,6 +12,12 @@ pub struct InitBountyHunter<'info> {
         space = BountyHunter::LEN
     )]
     pub bounty_hunter: Box<Account<'info, BountyHunter>>,
+
+    #[account(
+        mut,
+        constraint = bounty_hunter_token_account.owner == *authority.to_account_info().key
+    )]
+    pub bounty_hunter_token_account: Account<'info, TokenAccount>,
 
     #[account(mut)]
     pub authority: Signer<'info>,
@@ -32,6 +38,7 @@ pub fn handler(ctx: Context<InitBountyHunter>, name: String, bio: String) -> Res
 
     bounty_hunter.display_name = name;
     bounty_hunter.authority = *ctx.accounts.authority.key;
+    bounty_hunter.bounty_hunter_token_account = ctx.accounts.bounty_hunter_token_account.key();
     bounty_hunter.bio = bio;
     bounty_hunter.reputation = 0;
     bounty_hunter.completed_bounties = 0;

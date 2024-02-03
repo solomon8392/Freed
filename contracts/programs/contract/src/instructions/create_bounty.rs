@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::spl_token::instruction::AuthorityType;
-use anchor_spl::token::{self, TokenAccount, Mint, Token, Transfer, SetAuthority};
+// use anchor_spl::token::spl_token::instruction::AuthorityType;
+// use anchor_spl::token::{self, TokenAccount, Mint, Token, Transfer, SetAuthority};
 
 use crate::constants::{CREATE_BOUNTY_REP, BOUNTY_ESCROW_PDA_SEEDS};
 use crate::state::*;

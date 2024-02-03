@@ -3,7 +3,7 @@ use anchor_lang::prelude::*;
 use crate::constants::*;
 
 #[account]
-pub struct User {
+pub struct BountyHunter {
     /// Name of user
     pub display_name: String,
 
@@ -19,20 +19,20 @@ pub struct User {
     /// Number of completed bounties
     pub completed_bounties: u64,
 
-    /// Number of jobs applied to
-    pub jobs_applied: u64,
+    /// Number of active bounties applied to
+    pub active_bounties: u64,
 
     /// Bump
     pub bump: u8,
 }
 
-impl User {
+impl BountyHunter {
     pub const LEN: usize = DISCRIMINATOR_LENGTH  // 8-byte discriminator
         + NAME_LENGTH                            // Name
         + PUBKEY_LENGTH                          // Authority
         + BIO_LENGTH                             // Bio of user
         + DATA_LENGTH                            // Reputation
         + DATA_LENGTH                            // Number of completed bounties
-        + DATA_LENGTH                            // Numver of job applications
+        + DATA_LENGTH                            // Number of active bounties
         + BOOL_LENGTH; // PDA Bump
 }

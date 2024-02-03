@@ -9,7 +9,6 @@ mod state;
 use instructions::*;
 
 
-
 declare_id!("GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm");
 
 #[program]
@@ -21,6 +20,8 @@ pub mod contract {
         msg!("Changed data to: {}!", data); // Message will show up in the tx logs
         Ok(())
     }
+
+
 }
 
 #[derive(Accounts)]

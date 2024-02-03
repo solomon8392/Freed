@@ -10,8 +10,11 @@ pub struct BountyPlatform {
     /// Authority of the platform
     pub authority: Pubkey,
 
-    /// Vault Account of the Bounty-pal
-    pub vault: Pubkey,
+    /// Vault Token Account of Bounty-pal
+    pub bounty_platform_vault: Pubkey,
+
+    /// Mint of the Vault Token
+    pub vault_mint: Pubkey,
 
     /// Number of created bounties
     pub created_bounties: u64,
@@ -30,7 +33,8 @@ impl BountyPlatform {
     pub const LEN: usize = DISCRIMINATOR_LENGTH      // 8-byte discriminator
         + NAME_LENGTH                                // name
         + PUBKEY_LENGTH                              // Authority of BountyPal Platform
-        + PUBKEY_LENGTH                              // BountyPal Vault Account
+        + PUBKEY_LENGTH                              // BountyPal Vault Token Account
+        + PUBKEY_LENGTH                              // Mint of Bounty-platform Token
         + DATA_LENGTH                                // created Bounties
         + DATA_LENGTH                                // Available Bounties
         + DATA_LENGTH                                // Completed Bounties

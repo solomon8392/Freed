@@ -13,6 +13,9 @@ pub struct Bounty {
     /// Id of bounty
     pub id: u64,
 
+    /// Bounty Vault Mint
+    pub bounty_vault_mint: Pubkey,
+
     /// Bounty Token Account
     pub bounty_vault_account: Pubkey,
 
@@ -24,9 +27,6 @@ pub struct Bounty {
 
     ///Timestamp when bounty is supposed to end
     pub bounty_end_time: i64,
-
-    /// Number of active bounty applications
-    pub applications: u64,
 
     /// Description of the bounty
     pub bounty_description: String,
@@ -44,14 +44,13 @@ pub struct Bounty {
 impl Bounty {
     pub const LEN: usize = DISCRIMINATOR_LENGTH // 8-byte discriminator
         + PUBKEY_LENGTH                         // creator Pubkey
-        + PUBKEY_LENGTH                         // bounty-pal Pubkey
+        + PUBKEY_LENGTH                         // bounty-platform Pubkey
         + DATA_LENGTH                           // Bounty Id
+        + PUBKEY_LENGTH                         // Mint of Bounty Vault Token
         + PUBKEY_LENGTH                         // Vault Account for Bounty
         + DATA_LENGTH                           // Amount For Bounty
         + DATA_LENGTH                           // Timestamp for when Bounty started
         + DATA_LENGTH                           // Timestamp for when Bounty ends
-        + DATA_LENGTH                           // Number of applicants
-        + DATA_LENGTH                           // Number of approved users
         + LINK_LENGTH                           // Description of Bounty
         + BOOL_LENGTH                           // Bounty Completion Status
         + PUBKEY_LENGTH                         // Bounty Winner

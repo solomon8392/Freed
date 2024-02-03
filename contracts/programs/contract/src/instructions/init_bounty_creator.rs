@@ -44,6 +44,7 @@ pub fn handler(ctx: Context<InitBountyCreator>, name: String) -> Result<()> {
     bounty_creator.reputation = 0;
     bounty_creator.total_bounties = 0;
     bounty_creator.available_bounties = 0;
+    bounty_creator.completed_bounties = 0;
     bounty_creator.bump = *ctx.bumps.get("bounty_creator").unwrap();
 
     Ok(())

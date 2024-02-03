@@ -33,7 +33,7 @@ impl BountyPlatform {
     pub const LEN: usize = DISCRIMINATOR_LENGTH      // 8-byte discriminator
         + NAME_LENGTH                                // name
         + PUBKEY_LENGTH                              // Authority of BountyPal Platform
-        + PUBKEY_LENGTH                              // BountyPal Vault Token Account
+        + PUBKEY_LENGTH                              // Bounty_platform Vault Token Account
         + PUBKEY_LENGTH                              // Mint of Bounty-platform Token
         + DATA_LENGTH                                // created Bounties
         + DATA_LENGTH                                // Available Bounties

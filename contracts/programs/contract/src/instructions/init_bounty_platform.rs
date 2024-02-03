@@ -32,7 +32,7 @@ pub struct InitBountyPlatform<'info> {
 pub fn handler(ctx: Context<InitBountyPlatform>, name: String, img_link: String) -> Result<()> {
     let bounty_platform = &mut ctx.accounts.bounty_platform;
 
-    if name.chars().count() > 40 {
+    if name.chars().count() > 30 {
         return Err(ErrorCodes::NameTooLong.into());
     }
 

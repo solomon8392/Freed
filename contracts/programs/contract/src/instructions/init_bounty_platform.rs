@@ -29,7 +29,7 @@ pub struct InitBountyPlatform<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<InitBountyPlatform>, name: String, img_link: String) -> Result<()> {
+pub fn handler(ctx: Context<InitBountyPlatform>, name: String) -> Result<()> {
     let bounty_platform = &mut ctx.accounts.bounty_platform;
 
     if name.chars().count() > 30 {

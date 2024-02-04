@@ -5,9 +5,7 @@ mod errors;
 mod instructions;
 mod state;
 
-
 use instructions::*;
-
 
 declare_id!("GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm");
 
@@ -15,29 +13,36 @@ declare_id!("GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm");
 pub mod contract {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, data: u64) -> Result<()> {
-        ctx.accounts.new_account.data = data;
-        msg!("Changed data to: {}!", data); // Message will show up in the tx logs
-        Ok(())
+    pub fn init_bounty_platform(ctx: Context<InitBountyPlatform>, name: String) -> Result<()> {
+        instructions::init_bounty_platform::handler(ctx, name)
     }
 
+    pub fn init_bounty_creator(ctx: Context<InitBountyCreator>, name: String) -> Result<()> {
+        instructions::init_bounty_creator::handler(ctx, name)
+    }
 
-}
+    pub fn init_bounty_hunter(
+        ctx: Context<InitBountyHunter>,
+        name: String,
+        bio: String,
+    ) -> Result<()> {
+        instructions::init_bounty_hunter::handler(ctx, name, bio)
+    }
 
-#[derive(Accounts)]
-pub struct Initialize<'info> {
-      // We must specify the space in order to initialize an account.
-    // First 8 bytes are default account discriminator,
-    // next 8 bytes come from NewAccount.data being type u64.
-    // (u64 = 64 bits unsigned integer = 8 bytes)
-    #[account(init, payer = signer, space = 8 + 8)]
-    pub new_account: Account<'info, NewAccount>,
-    #[account(mut)]
-    pub signer: Signer<'info>,
-    pub system_program: Program<'info, System>,
-}
+    pub fn create_bounty(
+        ctx: Context<CreateBounty>,
+        amount: u64,
+        description: String,
+        deadline: i64,
+    ) -> Result<()> {
+        instructions::create_bounty::handler(ctx, amount, description, deadline)
+    }
 
-#[account]
-pub struct NewAccount {
-    data: u64
+    pub fn accept_bounty_submission(ctx: Context<AcceptBountySubmission>) -> Result<()> {
+        instructions::accept_bounty_submission::handler(ctx)
+    }
+
+    pub fn cancel_bounty(ctx: Context<CancelBounty>) -> Result<()> {
+        instructions::cancel_bounty::handler(ctx)
+    }
 }

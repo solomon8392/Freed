@@ -25,6 +25,9 @@ pub struct BountyPlatform {
     /// Number of completed bounties
     pub completed_bounties: u64,
 
+    /// Number of total bounties on the platform
+    pub total_bounties: u64,
+
     /// Bump
     pub bump: u8,
 }
@@ -38,5 +41,6 @@ impl BountyPlatform {
         + DATA_LENGTH                                // created Bounties
         + DATA_LENGTH                                // Available Bounties
         + DATA_LENGTH                                // Completed Bounties
+        + DATA_LENGTH                                // Total Bounties
         + BOOL_LENGTH; // Bump
 }

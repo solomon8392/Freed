@@ -17,9 +17,9 @@ pub struct CancelBounty<'info> {
             bounty_id.to_string().as_bytes(),
         ],
         bump=bounty.bump,
-        close = authority,
-        has_one = bounty_platform,
-        has_one = bounty_creator,
+        close=authority,
+        has_one=bounty_platform,
+        has_one=bounty_creator,
     )]
     pub bounty: Box<Account<'info, Bounty>>,
 
@@ -94,7 +94,7 @@ pub fn handler(ctx: Context<CancelBounty>) -> Result<()> {
         ctx.accounts
             .transfer_to_bounty_creator_context()
             .with_signer(&[&authority_seeds[..]]), 
-        ctx.accounts.bounty.amount
+        ctx.accounts.bounty.amount_staked
     )?;
 
     token::close_account(

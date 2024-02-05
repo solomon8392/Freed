@@ -43,6 +43,9 @@ pub fn handler(ctx: Context<InitBountyPlatform>, name: String) -> Result<()> {
     bounty_platform.created_bounties = 0;
     bounty_platform.available_bounties = 0;
     bounty_platform.completed_bounties = 0;
+    bounty_platform.total_bounties = 0;
+    bounty_platform.bounty_hunter_count= 0;
+    bounty_platform.bounty_creator_count = 0;
     bounty_platform.bump = *ctx.bumps.get("bounty_platform").unwrap();
 
     Ok(())

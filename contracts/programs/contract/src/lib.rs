@@ -17,16 +17,17 @@ pub mod contract {
         instructions::init_bounty_platform::handler(ctx, name)
     }
 
-    pub fn init_bounty_creator(ctx: Context<InitBountyCreator>, name: String) -> Result<()> {
-        instructions::init_bounty_creator::handler(ctx, name)
+    pub fn init_bounty_creator(ctx: Context<InitBountyCreator>, name: String,  platform_id: String) -> Result<()> {
+        instructions::init_bounty_creator::handler(ctx, name, platform_id)
     }
 
     pub fn init_bounty_hunter(
         ctx: Context<InitBountyHunter>,
         name: String,
         bio: String,
+        platform_id: String
     ) -> Result<()> {
-        instructions::init_bounty_hunter::handler(ctx, name, bio)
+        instructions::init_bounty_hunter::handler(ctx, name, bio, platform_id)
     }
 
     pub fn create_bounty(
@@ -34,8 +35,9 @@ pub mod contract {
         amount: u64,
         description: String,
         deadline: i64,
+        context_id: String
     ) -> Result<()> {
-        instructions::create_bounty::handler(ctx, amount, description, deadline)
+        instructions::create_bounty::handler(ctx, amount, description, deadline, context_id)
     }
 
     pub fn accept_bounty_submission(ctx: Context<AcceptBountySubmission>) -> Result<()> {
@@ -44,5 +46,9 @@ pub mod contract {
 
     pub fn cancel_bounty(ctx: Context<CancelBounty>) -> Result<()> {
         instructions::cancel_bounty::handler(ctx)
+    }
+
+    pub fn apply_for_bounty(ctx: Context<ApplyForBounty>) -> Result<()> {
+        instructions::apply_for_bounty::handler(ctx)
     }
 }

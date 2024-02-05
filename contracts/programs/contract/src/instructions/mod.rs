@@ -6,6 +6,7 @@ pub mod init_bounty_creator;
 pub mod init_bounty_hunter;
 pub mod init_bounty_platform;
 pub mod get_bounty_details;
+pub mod apply_for_bounty;
 
 
 pub use create_bounty::*;
@@ -16,3 +17,4 @@ pub use init_bounty_creator::*;
 pub use init_bounty_hunter::*;
 pub use init_bounty_platform::*;
 pub use get_bounty_details::*;
+pub use apply_for_bounty::*;

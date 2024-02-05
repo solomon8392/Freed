@@ -86,7 +86,7 @@ impl<'info> CreateBounty<'info> {
     }
 }
 
-pub fn handler(ctx: Context<CreateBounty>, amount: u64, description: String, deadline: i64) -> Result<()> {
+pub fn handler(ctx: Context<CreateBounty>, amount: u64, description: String, deadline: i64, context_id: String) -> Result<()> {
     if *ctx.accounts.authority.to_account_info().key != ctx.accounts.bounty_creator.authority.key() {
         return Err(ErrorCodes::Unauthorized.into());
     }
@@ -95,15 +95,18 @@ pub fn handler(ctx: Context<CreateBounty>, amount: u64, description: String, dea
     let bounty_creator = &mut ctx.accounts.bounty_creator;
     let bounty_platform = &mut ctx.accounts.bounty_platform;
 
-    bounty.creator = bounty_creator.key();
-    bounty.platform = bounty_platform.key();
+    bounty.bounty_creator = bounty_creator.key();
+    bounty.bounty_platform = bounty_platform.key();
     bounty.id = bounty_platform.total_bounties + 1;
     bounty.bounty_vault_mint = ctx.accounts.bounty_vault_mint.key();
     bounty.bounty_vault_account = ctx.accounts.bounty_vault_token_account.key();
-    bounty.amount = amount;
+    bounty.total_amount += amount;
+    bounty.amount_staked = amount;
     bounty.bounty_start_time = ctx.accounts.clock.unix_timestamp;
     bounty.bounty_end_time = deadline;
     bounty.bounty_description = description;
+    bounty.context_id = context_id;
+    
     bounty.is_completed = false;
     bounty.bump = *ctx.bumps.get("bounty").unwrap();
 

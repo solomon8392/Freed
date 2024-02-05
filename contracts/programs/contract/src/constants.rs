@@ -13,4 +13,5 @@ pub const BOUNTY_ESCROW_PDA_SEEDS: &[u8] = b"bounty-escrow";
 pub const CREATE_BOUNTY_REP: i64 = 1;
 pub const CLOSE_BOUNTY_REP: i64 = -2;
 pub const COMPLETE_BOUNTY_REP: i64 = 5;
+pub const ACCEPT_BOUNTY_REP: i64 = 15;
 pub const BOUNTY_ACCEPTED_REP: i64 = 20;

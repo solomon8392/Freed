@@ -9,12 +9,19 @@ use crate::{
 
 #[derive(Accounts)]
 pub struct AcceptBountySubmission<'info> {
+    #[account(
+        mut,
+        seeds=[b"bounty-application", bounty.key().as_ref(), bounty_hunter.key().as_ref(),],
+        bump=bounty_application.bump
+    )]
+    pub bounty_application: Box<Account<'info, BountyApplication>>,
+
     #[account(mut, has_one=bounty_creator, has_one=bounty_platform)]
     pub bounty: Box<Account<'info, Bounty>>,
 
     #[account(
         mut,
-        seeds=[b"bounty_creator", authority.key().as_ref()],
+        seeds=[b"bounty-creator", authority.key().as_ref()],
         bump=bounty_creator.bump
     )]
     pub bounty_creator: Box<Account<'info, BountyCreator>>,
@@ -42,7 +49,7 @@ pub struct AcceptBountySubmission<'info> {
 
     #[account(
         mut,
-        constraint = bounty_hunter_token_account.key() == bounty_hunter.bounty_hunter_token_account
+        constraint = bounty_hunter_token_account.key() == bounty_application.bounty_hunter_token_account
     )]
     pub bounty_hunter_token_account: Account<'info, TokenAccount>,
 
@@ -68,6 +75,7 @@ pub fn handler(ctx: Context<AcceptBountySubmission>) -> Result<()> {
     let bounty_creator = &mut ctx.accounts.bounty_creator;
     let bounty_platform = &mut ctx.accounts.bounty_platform;
     let bounty_hunter = &mut ctx.accounts.bounty_hunter;
+    let bounty_application = &mut ctx.accounts.bounty_application;
     let bounty = &mut ctx.accounts.bounty;
 
     if *ctx.accounts.authority.key != bounty_creator.authority {
@@ -84,6 +92,8 @@ pub fn handler(ctx: Context<AcceptBountySubmission>) -> Result<()> {
     bounty_hunter.completed_bounties += 1;
     bounty_hunter.reputation += BOUNTY_ACCEPTED_REP;
 
+    bounty_application.bounty_application_status = BountyStatus::Accepted;
+
     bounty.is_completed = true;
     bounty.bounty_winner = bounty_hunter.key();
 
@@ -96,7 +106,7 @@ pub fn handler(ctx: Context<AcceptBountySubmission>) -> Result<()> {
         ctx.accounts
             .transfer_winnings_context()
             .with_signer(&[&authority_seeds[..]]),
-        ctx.accounts.bounty.amount,
+        ctx.accounts.bounty.total_amount,
     )?;
 
     Ok(())

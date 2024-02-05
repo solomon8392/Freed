@@ -1,24 +1,35 @@
 // use anchor_lang::prelude::*;
-// use anchor_spl::token::spl_token::instruction::AuthorityType;
-// use anchor_spl::token::{self, TokenAccount, Mint, Token, Transfer, SetAuthority};
+// // use anchor_spl::token::spl_token::instruction::AuthorityType;
+// use anchor_spl::token::{self, TokenAccount, Mint, Token, Transfer};
 
-// use crate::constants::BOUNTY_ESCROW_PDA_SEEDS;
+// // use crate::constants::BOUNTY_ESCROW_PDA_SEEDS;
 // use crate::state::*;
 // use crate::errors::ErrorCodes;
 
 // #[derive(Accounts)]
+// #[instruction(bounty_id: u64)]
+// // #[instruction(bounty_id: u64)]
 // pub struct AddFunds<'info> {
+    
 //     #[account(
-//         init,
+//         mut,
+//         constraint = authority_token_account.mint == bounty_vault_mint.key(),
+//         constraint = authority_token_account.owner == *authority.key,
+//     )]
+//     pub authority_token_account: Account<'info, TokenAccount>,
+
+//     #[account(
+//         mut,
 //         seeds=[
 //             b"bounty",
 //             bounty_platform.key().as_ref(), 
-//             bounty_hunter.key().as_ref(), 
-//             bounty_hunter.total_bounties.to_string().as_bytes(),
+//             bounty_creator.key().as_ref(), 
+//             authority.key().as_ref(),
 //         ],
-//         bump,
-//         payer = authority,
-//         space = Bounty::LEN
+//         bump=bounty.bump,
+//         close=authority,
+//         has_one=bounty_platform,
+//         has_one=bounty_creator,
 //     )]
   
 //     pub bounty: Box<Account<'info, Bounty>>,
@@ -47,13 +58,6 @@
 //     #[account(mut)]
 //     pub bounty_vault_mint: Account<'info, Mint>,
 
-//     #[account(
-//         mut,
-//         constraint = authority_token_account.mint == bounty_vault_mint.key(),
-//         constraint = authority_token_account.owner == *authority.key,
-//     )]
-//     pub authority_token_account: Account<'info, TokenAccount>,
-
 //     #[account(mut)]
 //     pub authority: Signer<'info>,
 
@@ -76,24 +80,9 @@
 //         CpiContext::new(self.token_program.to_account_info().clone(), cpi_accounts)
 //     }
 
-//         //I don't know If I need to set authority
-//     fn set_authority_context(&self) -> CpiContext<'_, '_, '_, 'info, SetAuthority<'info>> {
-//         let cpi_accounts = SetAuthority {
-//             account_or_mint: self.bounty_vault_token_account.to_account_info().clone(),
-//             current_authority: self.authority.to_account_info().clone(),
-//         };
-
-//         CpiContext::new(self.token_program.to_account_info().clone(), cpi_accounts)
-//     }
 // }
 
 // pub fn handler(ctx: Context<AddFunds>, amount: u64) -> Result<()> {
-//     //I don't know If I need to set authority
-//     token::set_authority(
-//         ctx.accounts.set_authority_context(), 
-//         AuthorityType::AccountOwner, 
-//         Some(vault_authority)
-//     )?;
 
 //     token::transfer(
 //         ctx.accounts.transfer_to_vault_context(), 

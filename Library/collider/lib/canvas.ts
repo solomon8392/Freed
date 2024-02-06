@@ -91,7 +91,19 @@ export class Canvas {
       this.ctx.font = actor.font;
       this.ctx.textAlign = "center";
       this.ctx.textBaseline = "middle";
-      this.ctx.fillStyle = "black"; // Set the text color
+      this.ctx.fillStyle = "#95B4FF"; // Set the text color
+      this.ctx.fillText(
+        actor.text,
+        actor.position.x + actor.width / 2 - 10,
+        actor.position.y + actor.height / 2
+      );
+      this.ctx.fillStyle = "#E1C8FF"; // Set the text color
+      this.ctx.fillText(
+        actor.text,
+        actor.position.x + actor.width / 2 + 10,
+        actor.position.y + actor.height / 2
+      );
+      this.ctx.fillStyle = "#181818"; // Set the text color
       this.ctx.fillText(
         actor.text,
         actor.position.x + actor.width / 2,

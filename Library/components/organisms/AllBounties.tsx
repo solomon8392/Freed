@@ -9,7 +9,7 @@ const AllBounties = () => {
       poolFundId: 1,
       active: false,
       bountySize: 1,
-      bountyToken: "Sol"
+      bountyToken: "Sol",
     },
     {
       avatarURL: "",
@@ -18,7 +18,7 @@ const AllBounties = () => {
       poolFundId: 1,
       active: false,
       bountySize: 1,
-      bountyToken: "Sol"
+      bountyToken: "Sol",
     },
     {
       avatarURL: "",
@@ -27,7 +27,7 @@ const AllBounties = () => {
       poolFundId: 1,
       active: false,
       bountySize: 1,
-      bountyToken: "Sol"
+      bountyToken: "Sol",
     },
     {
       avatarURL: "",
@@ -36,7 +36,7 @@ const AllBounties = () => {
       poolFundId: 1,
       active: false,
       bountySize: 1,
-      bountyToken: "Sol"
+      bountyToken: "Sol",
     },
     {
       avatarURL: "",
@@ -45,15 +45,12 @@ const AllBounties = () => {
       poolFundId: 1,
       active: false,
       bountySize: 1,
-      bountyToken: "Sol"
+      bountyToken: "Sol",
     },
   ];
   return (
-    <div className=" flex-1 h-full border-r border-r-[#e4e5e6] pr-4">
-      <p className=" font-medium border-b py-4 border-b-[#e4e5e6]">
-        All Bounties!
-      </p>
-      <div className="flex flex-col gap-4 mx-auto p-4 w-[800px]">
+    <div className=" flex-1 h-full border-r border-r-[#e4e5e6]">
+      <div className="flex flex-col gap-6 mx-auto p-4 w-[800px]">
         {data.map((prop, i) => (
           <BountyCard key={i} {...prop} />
         ))}

@@ -1,6 +1,6 @@
 "use client";
-import collider from "@/Library/collider";
-import AllBounties from "@/Library/components/organisms/AllBounties";
+import collider from "@/library/collider";
+import AllBounties from "@/library/components/organisms/AllBounties";
 import { useEffect, useRef } from "react";
 
 const page = () => {
@@ -11,7 +11,7 @@ const page = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-8">
       <div
         className="w-full min-h-[5rem] flex flex-1 items-center justify-center"
         ref={canvasParentRef}

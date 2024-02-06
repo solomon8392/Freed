@@ -14,7 +14,7 @@ interface IBountyCard {
 const BountyCard = (prop: IBountyCard) => {
   return (
     <Link
-      className="flex justify-between items-center p-4 bg-black hover:bg-slate-200 rounded-md"
+      className="flex justify-between items-center p-4 bg-white rounded-md border-2 border-[#95B4FF] hover:border-[#E1C8FF] relative after:absolute after:-z-10 after:inset-0 after:content-[''] after:bg-[#4D4D4D] after:translate-x-[-8px] after:translate-y-[8px] after:rounded-md"
       href={`/pools/${prop.poolFundId}`}
     >
       <div className="flex gap-4">

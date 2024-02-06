@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/core";
 
-import initPaginator from "@/Library/utils/paginateData";
-import poll from "@/Library/utils/poll";
+import initPaginator from "@/library/utils/paginateData";
+import poll from "@/library/utils/poll";
 
 type ResType = "creation" | "payout" | "enquiry" | "unclear";
 

@@ -1,8 +1,13 @@
-import MainNav from "@/Library/components/organisms/MainNav";
 import "@/library/styles/globals.css";
 import type { Metadata } from "next";
+import { Bebas_Neue } from "next/font/google";
 
-// const inter = Inter({ subsets: ["latin"] });
+const bebas_neue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  preload: true,
+  variable: "--font-bebas-neue",
+});
 
 export const metadata: Metadata = {
   title: "Bountypal",
@@ -14,12 +19,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className="relative flex w-full min-h-screen flex-col items-center gap-4 bg-[#ffffff] bg-[url(/grid--light.svg)]">
-        <MainNav />
-        {children}
-      </body>
-    </html>
-  );
+  return <html lang="en">{children}</html>;
 }

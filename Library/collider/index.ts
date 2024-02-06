@@ -23,8 +23,8 @@ const collider = ({
     position: new Vector(width * 2 - 2000 / 2, height * 2 - 600 / 2),
     velocity: new Vector(0, 0),
     fixed: true,
-    text: "All Bounties!!!",
-    font: "200px Arial",
+    text: "Explore Bounties!",
+    font: "200px bebas",
   });
 
   floaters.push(box);

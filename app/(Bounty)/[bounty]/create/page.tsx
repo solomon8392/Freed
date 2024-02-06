@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/lib/components/atoms/Button";
-import Input from "@/lib/components/molecules/Input";
+import Button from "@/library/components/atoms/Button";
+import Input from "@/library/components/molecules/Input";
 import { useReducer } from "react";
 
 export interface NewFundPool {
@@ -51,7 +51,7 @@ const page = () => {
     <div className="flex flex-col gap-8 p-4 bg-white rounded-lg relative after:absolute after:-z-[10] after:inset-0 after:content-[''] after:bg-[#ffffff87] after:backdrop-blur-sm after:translate-x-[-8px] after:translate-y-[8px] after:rounded-lg w-[450px] min-h-96">
       <div className="flex flex-col text-[#2D2D2C]">
         <h3 className=" text-lg font-bold">Create A Bounty</h3>
-        <p className=" text-xs">Happy</p>
+        <p className=" text-xs">Welcome to the Bounty Creation page. Here, you can create a new bounty by providing the necessary details. If you need any help, feel free to reach out to us.</p>
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">

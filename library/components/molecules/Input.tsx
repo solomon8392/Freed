@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/library/utils";
 // import { OutputData } from "@editorjs/editorjs";
 import dynamic from "next/dynamic";
 import { ChangeEvent } from "react";

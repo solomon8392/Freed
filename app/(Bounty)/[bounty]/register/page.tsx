@@ -1,6 +1,6 @@
 "use client";
-import Button from "@/lib/components/atoms/Button";
-import Input from "@/lib/components/molecules/Input";
+import Button from "@/library/components/atoms/Button";
+import Input from "@/library/components/molecules/Input";
 import { useReducer } from "react";
 
 export interface NewFundPool {

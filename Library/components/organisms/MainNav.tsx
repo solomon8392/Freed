@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useMemo } from "react";
-import { cn } from "@/Library/utils";
+import { cn } from "@/library/utils";
 
 const MainNav = () => {
   const segments = useSelectedLayoutSegments();
@@ -39,7 +39,7 @@ const MainNav = () => {
             alt="bountypal logo"
           />
         </Link>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           {navItems.map(({ name, href, isActive }) => (
             <Link
               key={name}
@@ -61,7 +61,7 @@ const MainNav = () => {
           >
             Create
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="flex gap-4 h-fit">
         <div className="bg-[#4E81FF] rounded-full p-[5px]">

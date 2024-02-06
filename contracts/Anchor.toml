@@ -7,6 +7,9 @@ skip-lint = false
 [programs.localnet]
 contract = "GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm"
 
+# [programs.devnet]
+# contract = "GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm"
+
 [registry]
 url = "https://api.apr.dev"
 

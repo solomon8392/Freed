@@ -1,5 +1,5 @@
-import MainNav from "@/library/components/organisms/MainNav";
-import { cn } from "@/library/utils";
+import MainNav from "@/lib/components/organisms/MainNav";
+import { cn } from "@/lib/utils";
 import "@/library/styles/globals.css";
 import type { Metadata } from "next";
 

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useMemo } from "react";
-import { cn } from "@/library/utils";
+import { cn } from "@/lib/utils";
 
 const MainNav = () => {
   const segments = useSelectedLayoutSegments();

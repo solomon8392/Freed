@@ -1,6 +1,6 @@
 "use client";
-import collider from "@/library/collider";
-import AllBounties from "@/library/components/organisms/AllBounties";
+import collider from "@/lib/collider";
+import AllBounties from "@/lib/components/organisms/AllBounties";
 import { useEffect, useRef } from "react";
 
 const page = () => {

@@ -12,6 +12,7 @@ pub struct BountyHunter {
 
     // /// Bounty Hunter Token Account
     // pub bounty_hunter_token_account: Pubkey,
+
     /// Bounty hunter Id on the platform
     pub id: u64,
 
@@ -36,8 +37,8 @@ impl BountyHunter {
         + NAME_LENGTH                            // Name
         + PUBKEY_LENGTH                          // Authority
         // + PUBKEY_LENGTH                       //  Bounty hunter Token Account
-        + BIO_LENGTH                             // Bio of user
         + DATA_LENGTH                            // id of bounty hunter on the platform
+        + BIO_LENGTH                             // Bio of user
         + NAME_LENGTH                            // platform id
         + DATA_LENGTH                            // Reputation
         + DATA_LENGTH                            // Number of completed bounties

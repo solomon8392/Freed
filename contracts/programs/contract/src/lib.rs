@@ -7,7 +7,7 @@ mod state;
 
 use instructions::*;
 
-declare_id!("GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm");
+declare_id!("Ab2ScbQzLejfeGDkTeqcGd5LG2jfqbMqnE8Jdyni3Bot");
 
 #[program]
 pub mod contract {

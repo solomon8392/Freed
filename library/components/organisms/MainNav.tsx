@@ -3,43 +3,47 @@ import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useMemo } from "react";
 import { cn } from "@/library/utils";
+import {
+    WalletModalProvider,
+    WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
 
 const MainNav = () => {
-  const segments = useSelectedLayoutSegments();
+    const segments = useSelectedLayoutSegments();
 
-  const navItems = useMemo(
-    () => [
-      {
-        name: "Home",
-        href: "/",
-        isActive: segments.length === 0,
-      },
-      {
-        name: "Bounties",
-        href: "/#bounties",
-        isActive: segments.includes("blocs"),
-      },
-      {
-        name: "FAQ",
-        href: "/#faq",
-        isActive: segments.includes("sgov"),
-      },
-    ],
-    [segments]
-  );
+    const navItems = useMemo(
+        () => [
+            {
+                name: "Home",
+                href: "/",
+                isActive: segments.length === 0,
+            },
+            {
+                name: "Bounties",
+                href: "/#bounties",
+                isActive: segments.includes("blocs"),
+            },
+            {
+                name: "FAQ",
+                href: "/#faq",
+                isActive: segments.includes("sgov"),
+            },
+        ],
+        [segments]
+    );
 
-  return (
-    <div className="flex sticky top-0 w-full justify-between items-center bg-white px-6 py-3 border-b">
-      <div className="flex items-center gap-8">
-        <Link className="rounded-full" href={"/"}>
-          <img
-            width={50}
-            height={50}
-            src="/bountypal.svg"
-            alt="bountypal logo"
-          />
-        </Link>
-        {/* <div className="flex gap-4">
+    return (
+        <div className="flex sticky top-0 w-full justify-between items-center bg-white px-6 py-3 border-b">
+            <div className="flex-grow  gap-8">
+                <Link className="rounded-full" href={"/"}>
+                    <img
+                        width={50}
+                        height={50}
+                        src="/bountypal.svg"
+                        alt="bountypal logo"
+                    />
+                </Link>
+                {/* <div className="flex gap-4">
           {navItems.map(({ name, href, isActive }) => (
             <Link
               key={name}
@@ -62,20 +66,45 @@ const MainNav = () => {
             Create
           </Link>
         </div> */}
-      </div>
-      <div className="flex gap-4 h-fit">
-        <div className="bg-[#4E81FF] rounded-full p-[5px]">
-          <img width={25} height={25} src="/discord.svg" alt="discord logo" />
+            </div>
+
+            <div className="flex justify-end mr-6 gap-4 h-fit">
+                <div className="bg-[#4E81FF] rounded-full p-[5px]">
+                    <img
+                        width={25}
+                        height={25}
+                        src="/discord.svg"
+                        alt="discord logo"
+                    />
+                </div>
+
+                <div className="bg-[#4E81FF] rounded-full p-[5px]">
+                    <img
+                        width={25}
+                        height={25}
+                        src="/twitter.svg"
+                        alt="twitter logo"
+                    />
+                </div>
+                <div className="bg-[#4E81FF] rounded-full p-[5px]">
+                    <img
+                        width={25}
+                        height={25}
+                        src="/github.svg"
+                        alt="github logo"
+                    />
+                </div>
+            </div>
+
+            <div className="flex gap-4 h-fit ">
+                <div className=" bg-[#4E81FF] rounded-full">
+                    <WalletModalProvider>
+                        <WalletMultiButton />
+                    </WalletModalProvider>
+                </div>
+            </div>
         </div>
-        <div className="bg-[#4E81FF] rounded-full p-[5px]">
-          <img width={25} height={25} src="/twitter.svg" alt="twitter logo" />
-        </div>
-        <div className="bg-[#4E81FF] rounded-full p-[5px]">
-          <img width={25} height={25} src="/github.svg" alt="github logo" />
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default MainNav;

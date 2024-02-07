@@ -1,0 +1,804 @@
+{
+  "version": "0.1.0",
+  "name": "contract",
+  "instructions": [
+    {
+      "name": "initBountyPlatform",
+      "accounts": [
+        {
+          "name": "bountyPlatform",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatformVaultMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatformVaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initBountyCreator",
+      "accounts": [
+        {
+          "name": "bountyCreator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bountyCreatorVaultMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyCreatorVaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatform",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "platformId",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initBountyHunter",
+      "accounts": [
+        {
+          "name": "bountyHunter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatform",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "string"
+        },
+        {
+          "name": "platformId",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "createBounty",
+      "accounts": [
+        {
+          "name": "bounty",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatform",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyCreator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyVaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyVaultMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authorityTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "deadline",
+          "type": "i64"
+        },
+        {
+          "name": "contextId",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "acceptBountySubmission",
+      "accounts": [
+        {
+          "name": "bountyApplication",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bounty",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyCreator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatform",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyHunter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyVaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyHunterTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancelBounty",
+      "accounts": [
+        {
+          "name": "bounty",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyVaultAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyPlatform",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyCreator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bountyCreatorTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "applyForBounty",
+      "accounts": [
+        {
+          "name": "bountyApplication",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bounty",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyHunter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyCreator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bountyHunterTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BountyApplication",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bounty",
+            "docs": [
+              "Bounty being applied to"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyCreator",
+            "docs": [
+              "Bounty creator this bounty belongs to"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyHunter",
+            "docs": [
+              "Bonuty hunter applying for this bounty"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyHunterTokenAccount",
+            "docs": [
+              "User Token Account"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyApplicationStatus",
+            "docs": [
+              "Bounty application status"
+            ],
+            "type": {
+              "defined": "BountyStatus"
+            }
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BountyCreator",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "docs": [
+              "Name of the Creator"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "authority",
+            "docs": [
+              "Authority of the Creator"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "reputation",
+            "docs": [
+              "Reputation of the Creator"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "platformId",
+            "docs": [
+              "id of platform (github/gitlab)"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "docs": [
+              "id of the bounty creator"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyCreatorVault",
+            "docs": [
+              "Vault Token Account of the Bounty Creator"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "vaultMint",
+            "docs": [
+              "Mint of the vault token"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "totalBounties",
+            "docs": [
+              "Total Number of Bounties posted"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "availableBounties",
+            "docs": [
+              "Number of available bounties"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "completedBounties",
+            "docs": [
+              "Number of completed bounties"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BountyHunter",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "displayName",
+            "docs": [
+              "Name of user"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "authority",
+            "docs": [
+              "Authority of user"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "id",
+            "docs": [
+              "Bounty hunter Id on the platform"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bio",
+            "docs": [
+              "Bio of user"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "platformId",
+            "docs": [
+              "id of platform (github/gitlab)"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "reputation",
+            "docs": [
+              "Reputation of user"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "completedBounties",
+            "docs": [
+              "Number of completed bounties"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BountyPlatform",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "docs": [
+              "Name of the Platform"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "authority",
+            "docs": [
+              "Authority of the platform"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyPlatformVault",
+            "docs": [
+              "Vault Token Account of Bounty-pal"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "vaultMint",
+            "docs": [
+              "Mint of the Vault Token"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "createdBounties",
+            "docs": [
+              "Number of created bounties"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "availableBounties",
+            "docs": [
+              "Number of bounties available on the platform"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "completedBounties",
+            "docs": [
+              "Number of completed bounties"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "totalBounties",
+            "docs": [
+              "Number of total bounties on the platform"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyHunterCount",
+            "docs": [
+              "Number of total bounty hunters on the platform"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyCreatorCount",
+            "docs": [
+              "Number of total bounty hunters on the platform"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bounty",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bountyCreator",
+            "docs": [
+              "The creator initializing the bounty"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyPlatform",
+            "docs": [
+              "The platfrom where the bounty is shown"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "id",
+            "docs": [
+              "Id of bounty"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyVaultMint",
+            "docs": [
+              "Bounty Vault Mint"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bountyVaultAccount",
+            "docs": [
+              "Bounty Token Account"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "totalAmount",
+            "docs": [
+              "Bounty Total Amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "amountStaked",
+            "docs": [
+              "Bounty Amount staked"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyStartTime",
+            "docs": [
+              "Timestamp when bounty was posted"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "bountyEndTime",
+            "docs": [
+              "Timestamp when bounty is supposed to end"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "bountyHunterApplications",
+            "docs": [
+              "Number of active bounty hunter applications"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bountyDescription",
+            "docs": [
+              "Description of the bounty"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "contextId",
+            "type": "string"
+          },
+          {
+            "name": "isCompleted",
+            "docs": [
+              "Bounty Completed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bountyWinner",
+            "docs": [
+              "Bounty Winner"
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "BountyStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NoUpdate"
+          },
+          {
+            "name": "Submitted"
+          },
+          {
+            "name": "Accepted"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NameTooLong",
+      "msg": "Name Too Long"
+    },
+    {
+      "code": 6001,
+      "name": "LinkTooLong",
+      "msg": "Link Too Long"
+    },
+    {
+      "code": 6002,
+      "name": "BioTooLong",
+      "msg": "Bio Too Long"
+    },
+    {
+      "code": 6003,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6004,
+      "name": "NotApproved",
+      "msg": "Not approved to claim"
+    }
+  ],
+  "metadata": {
+    "address": "Ab2ScbQzLejfeGDkTeqcGd5LG2jfqbMqnE8Jdyni3Bot"
+  }
+}

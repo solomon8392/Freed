@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import Button from "@/library/components/atoms/Button";
 import Input from "@/library/components/molecules/Input";

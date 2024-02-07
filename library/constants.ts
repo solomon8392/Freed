@@ -1,0 +1,5 @@
+const USDC_MINT = "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr";
+const USDC_DECIMALS = 1000000;
+const PROGRAM_ID = "Ab2ScbQzLejfeGDkTeqcGd5LG2jfqbMqnE8Jdyni3Bot"
+
+export { USDC_MINT, USDC_DECIMALS };

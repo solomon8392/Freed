@@ -2,12 +2,11 @@
 
 Live Demo - [Vimeo video](https://vimeo.com/910420574) <br />
 Live Link - [BountyPal dapp](https://bountypal.vercel.app/) <br />
-[BountyPal](https://bountypal.vercel.app/) is your go-to platform for managing bounties across different development platforms.
-
-We are interested in revolutionizing the way bounties are managed in the open-source world.
 
 
 ## ✨ Description
+[BountyPal](https://bountypal.vercel.app/) is your go-to platform for managing bounties across different development platforms, we are interested in revolutionizing the way bounties are managed in the open-source world.
+
 In the world of web3, bounties are extremely important to developers as they are a community incentive for them to contribute to interesting projects, learn new concepts on the fly, gain valuable experience and at the same time strengthing the open source culture. 
 
 But in the world of bounties, there is sometimes an issue of knowing who is working on a current task, tracking bounty participants etc, and managing this most times manually is strenous on the bounty creator or bounty host, that's why we built BountyPal, BountyPal uses geminiAI to manage tasks and give smart responses to inquiries about bounties, tracks who is working on which bounty, creates payout links for smooth deposits into the bounty pool as well and many more.

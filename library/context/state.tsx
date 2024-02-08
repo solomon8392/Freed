@@ -32,11 +32,11 @@ const AppContext = createContext<stateContextType>(contextDefaultValue);
 
 export function AppWrapper({ children }: StateContextProviderProps) {
     const [allTokensData, setAllTokenData] = useState<any>();
-    const [address, setAddress] = useState<string>("");
+    const [address, setAddress] = useState<string>("default address");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const [web3Program, setProgram] = useState<Program>();
-    const [web3Provider, setProvider] = useState<AnchorProvider>();
+    const [web3Program, setProgram] = useState<any>();
+    const [web3Provider, setProvider] = useState<any>();
     const [newConnection, setConnection] = useState<any>();
 
     let sharedState = {

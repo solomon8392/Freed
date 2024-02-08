@@ -4,6 +4,8 @@ import Button from "@/library/components/atoms/Button";
 import Input from "@/library/components/molecules/Input";
 import React, { useState, useReducer } from "react";
 
+import { Buffer } from "buffer";
+import * as BufferLayout from "@solana/buffer-layout";
 
 import {
     Address,
@@ -24,9 +26,14 @@ import {
 
 import { USDC_MINT } from "../../../../library/constants";
 import { useAppContext } from "@/library/context/state";
-import { initBountyPlatform, send, getProvider, getProgram, PROGRAM_ID } from "@/library/helpers";
+import {
+    initBountyPlatform,
+    send,
+    getProvider,
+    getProgram,
+    PROGRAM_ID,
+} from "@/library/helpers";
 import * as anchor from "@project-serum/anchor";
-
 
 export interface NewFundPool {
     registrationAddress: string;
@@ -53,9 +60,7 @@ const connection = new anchor.web3.Connection(
     //   "https://metaplex.devnet.rpcpool.com/",
     // "https://api.metaplex.solana.com/",
     { commitment: "confirmed" }
-  );
-
-  
+);
 
 const page = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -72,10 +77,8 @@ const page = () => {
     const provider = useWallet();
     const { publicKey } = useWallet();
 
-   
     //console.log(publicKey);
 
- 
     // const setUSDC = async () => {
     //     try {
     //         const usdcMint = new PublicKey(USDC_MINT);
@@ -139,24 +142,22 @@ const page = () => {
     //     } catch (e: any) {
     //         throw new Error(`Error initializing bounty_platform: ${e}`);
     //     }
-    
-    
+
     // };
 
-   
     const handleRegistration = async () => {
-
         //await initBountyPlatform(publicKey as unknown as any, platformName);
-
 
         try {
             const usdcMint = new PublicKey(USDC_MINT);
-            console.log(usdcMint)
+            //let usdcAcctInfo = await connection.getAccountInfo(usdcMint);
+            //console.log(usdcAcctInfo)
             const transaction = new Transaction();
             const userTokenAccount = await getAssociatedTokenAddress(
                 usdcMint,
                 publicKey as PublicKey
             );
+            //console.log(userTokenAccount)
             try {
                 await getAccount(getProvider().connection, userTokenAccount);
             } catch (e) {
@@ -175,10 +176,11 @@ const page = () => {
             ).blockhash;
             transaction.feePayer = provider.publicKey as unknown as any;
             //@ts-ignore
-            const signedTransaction = await provider?.signTransaction(transaction) as unknown as any;
+            const signedTransaction = (await provider?.signTransaction(
+                transaction
+            )) as unknown as any;
             const rawTransaction = signedTransaction.serialize();
-    
-    
+
             const txid = await connection?.sendRawTransaction(rawTransaction, {
                 skipPreflight: true,
                 preflightCommitment: "processed",
@@ -192,47 +194,53 @@ const page = () => {
                 anchor.web3.PublicKey.findProgramAddressSync(
                     [
                         //utils.bytes.utf8.encode("bounty_platform"),
-                        Buffer.from('bounty_platform'),
+                        Buffer.from("bounty_platform"),
                         publicKey?.toBuffer() as Buffer,
                     ],
                     //getProvider()?.programId as Program
-                    PROGRAM_ID
+                    web3Program?.programId
                 );
-                //console.log(bountyPlatformPDA)
-                
-                console.log(usdcMint)
-                //console.log(userTokenAccount)
-            const transaction2 = new Transaction().add(
-                  await getProgram().methods
-                .initBountyPlatform("Magic")
-                .accounts({
-                    bounty_platform: bountyPlatformPDA,
-                    bounty_platform_vault_mint: usdcMint,
-                    bounty_platform_vault_token_account: userTokenAccount,
-                    authority: publicKey as PublicKey,
-                    system_program: web3.SystemProgram.programId,
-                })
-                .instruction()
-                // .signers([])
-                // .rpc()
-            )
+            //console.log("bountyPlatformPDA");
+            //console.log(bountyPlatformPDA);
 
-            transaction2.recentBlockhash = (
-                await connection?.getLatestBlockhash()
-            ).blockhash;
-            transaction2.feePayer = provider.publicKey as unknown as any;
+            // console.log(usdcMint)
+            //console.log(userTokenAccount)
             //@ts-ignore
-            const signedTransaction2 = await provider?.signTransaction(transaction2) as unknown as any;
-            const rawTransaction2 = signedTransaction2.serialize();
-            const txid2 = await connection.sendRawTransaction(rawTransaction2, {
-                skipPreflight: true,
-                preflightCommitment: "processed",
-            });
-        
-               await connection.confirmTransaction(txid2);
-               // await send(publicKey, transaction2);
-           
+            //const transaction2: any = new Transaction().add(
+                await getProgram()
+                    .methods.initBountyPlatform(platformName)
+                    .accounts({
+                        bounty_platform: bountyPlatformPDA,
+                        bounty_platform_vault_mint: usdcMint,
+                        bounty_platform_vault_token_account: userTokenAccount,
+                        authority: publicKey as PublicKey,
+                        system_program: web3.SystemProgram.programId,
+                    })
+                    //.instruction()
+                    .signers([])
+                    .rpc()
+           // );
 
+            // transaction2.recentBlockhash = (
+            //     await connection?.getLatestBlockhash()
+            // ).blockhash;
+            // transaction2.feePayer = provider.publicKey as unknown as any;
+            // //@ts-ignore
+            // const signedTransaction2 = (await provider?.signTransaction(
+            //     transaction2
+            // )) as unknown as any;
+            // const rawTransaction2 = signedTransaction2.serialize();
+            // const txid2 = await connection.sendRawTransaction(rawTransaction2, {
+            //     skipPreflight: true,
+            //     preflightCommitment: "processed",
+            // });
+
+            // await connection.confirmTransaction(txid2);
+
+
+
+
+            // await send(publicKey, transaction2);
 
             // await getProgram().methods
             //     .initBountyPlatform(platformName, "")
@@ -250,7 +258,7 @@ const page = () => {
                 web3Program.account.bounty_platform.fetch(
                     bountyPlatformPDA as Address
                 );
-            console.log(createdBounty_platform);
+            //console.log(createdBounty_platform);
 
             // setDisplayType("is_bounty_platform");
 
@@ -258,15 +266,13 @@ const page = () => {
         } catch (e) {
             throw new Error(`Error creating bounty_platform: ${e}`);
         }
-
-
     };
 
     const handleWalletConnect = () => {
         const address = "0x...."; // TODO: get address from wallet
         updateValues({ registrationAddress: address, paymentAddress: address });
     };
-    
+
     // useEffect(() => {
     //     //etAddress("changed address")
     //     //console.log(`console.logging from main nav ${address}`)
@@ -294,7 +300,6 @@ const page = () => {
                     onChange={(e) =>
                         // updateValues({ registrationAddress: e.target.value })
                         setPlatformName(e.target.value)
-                        
                     }
                 />
                 {/* <p>{platformName}</p> */}

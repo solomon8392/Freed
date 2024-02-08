@@ -38,14 +38,13 @@ const page = () => {
   return (
     <div className="flex flex-col gap-8 p-4 bg-white rounded-lg relative after:absolute after:-z-[10] after:inset-0 after:content-[''] after:bg-[#ffffff87] after:backdrop-blur-sm after:translate-x-[-8px] after:translate-y-[8px] after:rounded-lg w-[450px]">
       <div className="flex flex-col text-[#2D2D2C]">
-        <h3 className=" text-lg font-bold">Register For Bounty</h3>
-        <p className=" text-xs">Happy</p>
+        <h3 className=" text-lg font-bold">Register as a Bounty Creator</h3>
       </div>
 
       <div
         className="flex flex-col gap-4"
         style={{
-          display: values.registrationAddress ? "flex" : "none",
+          display:  "flex" 
         }}
       >
         <Input
@@ -63,11 +62,16 @@ const page = () => {
           onChange={(e) => updateValues({ paymentAddress: e.target.value })}
         />
       </div>
+      <Button
+          className="w-full max-w-[480px]"
+          text={"Register as bounty creator"}
+          handleClick={handleRegistration}
+        />
 
-      {values.registrationAddress ? (
+      {/* {values.registrationAddress ? (
         <Button
           className="w-full max-w-[480px]"
-          text={"Register Bounty"}
+          text={"Register as bounty creator"}
           handleClick={handleRegistration}
         />
       ) : (
@@ -76,7 +80,7 @@ const page = () => {
           text={"Connect wallet"}
           handleClick={handleWalletConnect}
         />
-      )}
+      )} */}
     </div>
   );
 };

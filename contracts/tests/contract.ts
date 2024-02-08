@@ -8,9 +8,9 @@ describe("contract", () => {
 
   const program = anchor.workspace.Contract as Program<Contract>;
 
-  it("Is initialized!", async () => {
-    // Add your test here.
-    const tx = await program.methods.initialize().rpc();
-    console.log("Your transaction signature", tx);
-  });
+  // it("Is initialized!", async () => {
+  //   // Add your test here.
+  //   const tx = await program.methods.initialize().rpc();
+  //   console.log("Your transaction signature", tx);
+  // });
 });

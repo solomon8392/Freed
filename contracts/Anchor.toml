@@ -5,16 +5,16 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-contract = "GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm"
+contract = "Ab2ScbQzLejfeGDkTeqcGd5LG2jfqbMqnE8Jdyni3Bot"
 
-# [programs.devnet]
-# contract = "GGqt2oJWPH1oXoxXndNEVaWxKv5nTNZtUDosK1pFVXTm"
+[programs.devnet]
+contract = "Ab2ScbQzLejfeGDkTeqcGd5LG2jfqbMqnE8Jdyni3Bot"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "/home/degencodebeast/.config/solana/id.json"
 
 [scripts]

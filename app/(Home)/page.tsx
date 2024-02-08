@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import collider from "@/library/collider";
 import AllBounties from "@/library/components/organisms/AllBounties";

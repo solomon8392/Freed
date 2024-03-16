@@ -12,8 +12,8 @@ const bebas_neue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Bountypal",
-  description: "Create smart bounties to kickstart more closed github issues",
+  title: "Freed",
+  description: "Frelanc",
 };
 
 export default function RootLayout({

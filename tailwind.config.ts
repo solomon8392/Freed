@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         bebas: ["var(--font-bebas-neue)"],
+        sans: ['Montserrat'],
       },
     },
   },

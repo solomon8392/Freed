@@ -1,4 +1,3 @@
-import MainNav from "@/library/components/organisms/MainNav";
 import { cn } from "@/library/utils";
 import "@/library/styles/globals.css";
 import type { Metadata } from "next";
@@ -25,10 +24,8 @@ export default function RootLayout({
     <body
       className={cn(
         bebas_neue.variable,
-        "relative flex w-full min-h-screen gap-4 flex-col items-center bg-[#fff] bg-[url(/grid--light.svg)]"
       )}
     >
-      <MainNav />
       {children}
     </body>
   );
